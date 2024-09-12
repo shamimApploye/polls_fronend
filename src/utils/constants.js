@@ -1,0 +1,6 @@
+// --------------------- CONSTANTS --------------------- //
+
+//  Fetch Data
+const FETCH_POLLS_REQUEST = 'FETCH_POLLS_REQUEST'
+const FETCH_POLLS_SUCCESS = 'FETCH_POLLS_SUCCESS'
+const FETCH_POLLS_FAILURE = 'FETCH_POLLS_FAILURE'

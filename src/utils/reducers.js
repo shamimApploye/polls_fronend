@@ -1,8 +1,8 @@
 // redux/reducers/index.js
 import { combineReducers } from 'redux';
-import pollsReducer from './pollsReducer';
+import pollsReducer from '../redux/reducers/pollsReducer';
 
-const rootReducer = combineReducers({
+const rootReducer = () => combineReducers({
   polls: pollsReducer,
 });
 
