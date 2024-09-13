@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects';
-import pollSaga from '../custom_modules/polls/sagas';
+import pollSaga from '../custom_modules/polls/pollsSagas';
 
 // Root saga to combine all the individual sagas
 export default function* rootSaga() {

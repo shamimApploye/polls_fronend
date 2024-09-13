@@ -1,12 +1,6 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 20px auto; /* Center horizontally with auto margin */
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
