@@ -5,19 +5,23 @@ import Login from './custom_modules/login/Login';
 import Dashboard from './custom_modules/dashboard/Dashboard';
 import { Route, Router } from 'react-router-dom';
 
-const App = () => (
-  <Router >
-    <Route  path='' element= {<Polls/>}/>
-    <Route  path='/signup' element= {<Signup/>}/>
-    <Route  path='/login' element= {<Login/>}/>
-    <Route path= '/protected'>
-      <Route  path='/users' element= {<Users/>}/>
-      <Route  path='/dashboard' element= {<Dashboard/>}/>
-      <Route  path='/pollList' element= {<Dashboard/>}/>
+function App() {
+  return (
+    <Router>
+      <Route path='/' element={<Home />} />
+      <Route path='/polls' element={<Polls />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/protected'>
+        <Route path='/users' element={<Users />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/pollList' element={<Dashboard />} />
+  
+      </Route>
+      <Router />
+    </Router>
+  
+  )
+}
 
-    </Route>
-
-  </Router>
-);
-
-export default App;
+export default App

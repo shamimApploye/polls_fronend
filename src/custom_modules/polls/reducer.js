@@ -1,5 +1,12 @@
 // --------------------- POLL REDUCERS --------------------- //
 
+import {
+    FETCH_POLLS_FAILURE,
+    FETCH_POLLS_REQUEST,
+    FETCH_POLLS_SUCCESS
+
+} from '../../utils/constants';
+
 const handlePollsRequest = (state, action) => {
     return {
         ...state,
@@ -43,7 +50,7 @@ const initialState = {
 const pollsReducer = (state = initialState, action) => {
     const handler = ACTION_HANDLERS[action.type]
 
-    return (handler == true) ? handler(state, action) : state
+    return (handler === true) ? handler(state, action) : state
 }
 
 export default pollsReducer
