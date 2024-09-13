@@ -1,5 +1,6 @@
 import React from 'react';
 import Polls from './custom_modules/polls';
+import AddPoll from './custom_modules/polls/addPoll';
 import Signup from './custom_modules/signup/Signup';
 import Login from './custom_modules/login/Login';
 import Dashboard from './custom_modules/dashboard/Dashboard';
@@ -12,6 +13,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/polls' element={<Polls />} />
+      <Route path='/add-poll' element={<AddPoll />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route element = {<Dashboard/>}>
