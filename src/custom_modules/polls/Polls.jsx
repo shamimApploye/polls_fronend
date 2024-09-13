@@ -9,7 +9,6 @@ const Polls = (props) => {
   useEffect (() => {
     fetchPolls()
   },[])
-  console.log(pollsList)
 
   return (
     
