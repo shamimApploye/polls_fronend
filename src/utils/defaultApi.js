@@ -7,7 +7,7 @@ const defaultApi = async (url, method, payload) => {
             "Content-Type": 'application/json'
         }
     })
-    const res = ''
+    let res = ''
     
     try {
         switch (method) {
@@ -26,7 +26,9 @@ const defaultApi = async (url, method, payload) => {
             case 'DELETE':
                 res = await api.delete(url)
                 console.log('Item Deleted', res.data) 
-    
+                break;
+            default:
+                console.log('default case');
         }
     } catch (err) {
         return res.err

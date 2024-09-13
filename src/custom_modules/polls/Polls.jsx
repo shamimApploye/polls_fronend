@@ -1,10 +1,9 @@
 import React from 'react'
 
-function Polls() {
+const Polls = () => {
   return (
     <div>
-      <button
-      >Poll Button</button>
+      <h1>POlls for your vote</h1>
     </div>
   )
 }
