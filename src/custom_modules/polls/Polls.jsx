@@ -2,7 +2,10 @@ import React from 'react'
 
 function Polls() {
   return (
-    <div>Polls</div>
+    <div>
+      <button
+      >Poll Button</button>
+    </div>
   )
 }
 
