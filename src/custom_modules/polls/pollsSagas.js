@@ -12,8 +12,7 @@ function* fetchPollsSaga() {
   const data = yield call(defaultApi, 'polls/', 'GET',);
   try {
     yield put({ type: FETCH_POLLS_SUCCESS, payload: data })
-  }
-  catch (err) {
+  } catch (err) {
     yield put({ type: FETCH_POLLS_FAILURE, payload: err })
   }
 }
