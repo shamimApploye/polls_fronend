@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PollContainer, Question, ChoiceContainer, ChoiceLabel, Votes, ChoiceInput } from '../../styledComponents/pollComponents';
 import { Container } from '../../styledComponents/common';
 
@@ -34,8 +34,17 @@ const accumulatedResultsByPoll = {
   ],
 };
 
-const PollList = () => {
+const PollList = (props) => {
+  const {pollsList, pollsLoading, pollsError, fetchPolls} = props
+
+
+  useEffect (() => {
+    fetchPolls()
+  },[])
+  console.log(pollsList)
+  console.log(typeof fetchPolls)
   return (
+    
     <Container>
       {polls.map((poll) => (
         <PollContainer key={poll.id}>

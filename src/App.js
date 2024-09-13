@@ -1,5 +1,5 @@
 import React from 'react';
-import Polls from './custom_modules/polls/Polls';
+import Polls from './custom_modules/polls';
 import Signup from './custom_modules/signup/Signup';
 import Login from './custom_modules/login/Login';
 import Dashboard from './custom_modules/dashboard/Dashboard';

@@ -1,12 +1,17 @@
 import { connect } from "react-redux"
 import Polls from "./Polls"
+import { actions } from "./action"
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => ({
+    pollsList: state.polls.polls,
+    pollsError: state.polls.error,
+    pollsLoading: state.polls.loading
+})
 
-}
+console.log(typeof actions.fetchPollsRequest)
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    
-}
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    fetchPolls: () => dispatch (actions.fetchPollsRequest()),
+})
 
 export default connect (mapStateToProps, mapDispatchToProps)(Polls)

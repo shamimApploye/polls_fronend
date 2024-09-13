@@ -1,0 +1,43 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.outer {
+    border: 2px solid red;
+    border-radius: 50px;
+    /* width: 60%; */
+    padding: 20px;
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.outer-1 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    /* padding: 20px 0; */
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.outer-2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+

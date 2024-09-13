@@ -4,7 +4,6 @@ import {
     FETCH_POLLS_FAILURE,
     FETCH_POLLS_REQUEST,
     FETCH_POLLS_SUCCESS
-
 } from '../../utils/constants';
 
 const handlePollsRequest = (state, action) => {
@@ -48,15 +47,10 @@ const initialState = {
 
 // Central Reducer of the Module
 const pollsReducer = (state = initialState, action) => {
+    console.log("ACTION CALLED:", action)
     const handler = ACTION_HANDLERS[action.type]
 
     return (handler === true) ? handler(state, action) : state
 }
 
 export default pollsReducer
-
-export const reducers = {
-    handlePollsRequest,
-    handlePollsRequestFailure,
-    handlePollsRequestSuccess
-}

@@ -1,12 +1,11 @@
 // --------------------- POLL SAGAS --------------------- //
 
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import defaultApi from '../../utils/defaultApi';
 import {
   FETCH_POLLS_REQUEST,
   FETCH_POLLS_SUCCESS,
   FETCH_POLLS_FAILURE
-
 } from '../../utils/constants'
 
 function* fetchPollsSaga() {
@@ -20,7 +19,7 @@ function* fetchPollsSaga() {
 }
 
 function* rootSaga() {
-  yield takeEvery(FETCH_POLLS_REQUEST, fetchPollsSaga);
+  yield takeLatest(FETCH_POLLS_REQUEST, fetchPollsSaga);
 }
 
 export default rootSaga;
