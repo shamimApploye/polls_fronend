@@ -1,11 +1,13 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import PollList from './components/PollList';
-import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import Polls from './custom_modules/polls/Polls';
 
 const App = () => (
   <Switch>
-    <Route  />
+    <Route exact path='/'>
+      <Polls />
+    </Route>
   </Switch>
 );
 
