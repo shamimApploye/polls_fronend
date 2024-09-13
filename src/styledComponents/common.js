@@ -3,13 +3,42 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  min-height: 100vh; /* Take full viewport height */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5; /* Optional: background color */
-  width: 100%; /* Full width of the screen */
-  max-width: 1200px; /* Optional: restrict maximum width */
-  background-color: #fffaf0;
+  width: 100%;
+  max-width: 1200px;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const Input = styled.input`
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+export const Button = styled.button`
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+export const Title = styled.h2`
+  margin-bottom: 20px;
 `;

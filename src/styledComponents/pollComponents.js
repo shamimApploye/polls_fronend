@@ -7,7 +7,7 @@ export const PollContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 400px;
-  text-align: center; /* Center content */
+  text-align: center;
   position: relative;
 `;
 
@@ -17,7 +17,6 @@ export const Title = styled.h1`
   margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
-  /* Optional: add more styles as needed */
 `;
 
 // Question text
@@ -69,10 +68,34 @@ export const NavigationButton = styled.button`
   }
 
   &:nth-of-type(1) {
-    left: -60px; /* Adjust positioning */
+    left: -60px;
   }
 
   &:nth-of-type(2) {
-    right: -60px; /* Adjust positioning */
+    right: -60px; 
+  }
+`;
+
+export const VoteButton = styled.button`
+  background-color: #28a745;  /* Green background */
+  color: white;  /* White text */
+  border: none;  /* Remove default border */
+  padding: 10px 20px;  /* Add some padding */
+  font-size: 16px;  /* Increase font size */
+  border-radius: 5px;  /* Rounded corners */
+  cursor: pointer;  /* Pointer cursor on hover */
+  transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
+
+  &:hover {
+    background-color: #218838;  /* Darker green on hover */
+  }
+
+  &:active {
+    background-color: #1e7e34;  /* Even darker green when clicked */
+  }
+
+  &:disabled {
+    background-color: #6c757d;  /* Gray when disabled */
+    cursor: not-allowed;  /* No pointer cursor when disabled */
   }
 `;

@@ -1,32 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { PollContainer, Question, ChoiceContainer, ChoiceLabel, Votes, ChoiceInput, NavigationButton, Title } from '../../styledComponents/pollComponents';
+import { 
+  PollContainer, 
+  Question, 
+  ChoiceContainer, 
+  ChoiceLabel, 
+  Votes, 
+  ChoiceInput, 
+  NavigationButton, 
+  Title, 
+  VoteButton 
+} from '../../styledComponents/pollComponents';
 import { Container } from '../../styledComponents/common';
 
-// Replace with your actual API endpoint for fetching polls
 const POLLS_API_URL = 'http://127.0.0.1:8000/polls/';
-// Replace with your actual API endpoint for fetching results
-const RESULTS_API_URL = 'http://127.0.0.1:8000/polls/';
+const CHOICES_API_URL = 'http://127.0.0.1:8000/polls/choices/';
+const VOTE_API_URL = 'http://127.0.0.1:8000/polls/choices/';
 
 const Polls = () => {
   const [polls, setPolls] = useState([]);
+  const [choices, setChoices] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [choices, setChoices] = useState([]);
+  const [selectedChoice, setSelectedChoice] = useState(null);
+  const [voted, setVoted] = useState(false); // To track if vote has been submitted
 
-  // Function to fetch polls
-  const fetchPolls = async () => {
+  // Fetch polls and choices on component mount
+  const fetchPollsAndChoices = async () => {
     try {
-      const response = await fetch(POLLS_API_URL);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      const pollsResponse = await fetch(POLLS_API_URL);
+      if (!pollsResponse.ok) {
+        throw new Error('Failed to fetch polls');
       }
-      const data = await response.json();
-      setPolls(data);
-      // Fetch results for the first poll initially
-      if (data.length > 0) {
-        fetchResults(data[0].id);
+      const pollsData = await pollsResponse.json();
+      setPolls(pollsData);
+
+      const choicesResponse = await fetch(CHOICES_API_URL);
+      if (!choicesResponse.ok) {
+        throw new Error('Failed to fetch choices');
       }
+      const choicesData = await choicesResponse.json();
+      setChoices(choicesData);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -34,61 +48,69 @@ const Polls = () => {
     }
   };
 
-  // Function to fetch results for a specific poll
-  const fetchResults = async (pollId) => {
+  useEffect(() => {
+    fetchPollsAndChoices();
+  }, []);
+
+  const handleVote = async () => {
+    if (selectedChoice === null) {
+      alert('Please select a choice before voting!');
+      return;
+    }
+
     try {
-      const response = await fetch(`${RESULTS_API_URL}${pollId}/results/`);
+      const response = await fetch(`${VOTE_API_URL}${selectedChoice}/vote/`, {
+        method: 'POST',
+      });
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Failed to cast vote');
       }
-      const data = await response.json();
-      setChoices(data);
+
+      // Re-fetch choices to update vote count
+      const choicesResponse = await fetch(CHOICES_API_URL);
+      const updatedChoices = await choicesResponse.json();
+      setChoices(updatedChoices);
+
+      setVoted(true); // Set vote state to true after successful vote
     } catch (error) {
       setError(error.message);
     }
   };
 
-  // Fetch polls on component mount
-  useEffect(() => {
-    fetchPolls();
-  }, []);
-
-  // Fetch results when currentIndex changes
-  useEffect(() => {
-    if (polls.length > 0) {
-      fetchResults(polls[currentIndex].id);
-    }
-  }, [currentIndex, polls]);
-
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % polls.length);
+    setSelectedChoice(null); // Reset selected choice when navigating to next poll
+    setVoted(false); // Reset voted state when navigating to the next poll
   };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + polls.length) % polls.length);
+    setSelectedChoice(null); // Reset selected choice when navigating to previous poll
+    setVoted(false); // Reset voted state when navigating to the previous poll
   };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  if (polls.length === 0) return <p>No polls available.</p>;
-
   const poll = polls[currentIndex];
+  const filteredChoices = choices.filter(choice => choice.question_id === poll.id);
 
   return (
     <Container>
       <Title>P-Polls: Express Your Opinion</Title>
       <PollContainer>
         <NavigationButton onClick={handlePrev}>&lt;</NavigationButton>
-        <div>
           <Question>{poll.question_text}</Question>
-          {choices.length > 0 ? (
-            choices.map((choice) => (
+          {filteredChoices.length > 0 ? (
+            filteredChoices.map((choice) => (
               <ChoiceContainer key={choice.id}>
                 <ChoiceInput
                   type="radio"
                   name={`poll-${poll.id}`}
                   value={choice.id}
+                  checked={selectedChoice === choice.id}
+                  onChange={() => setSelectedChoice(choice.id)}
+                  disabled={voted} // Disable selection after voting
                 />
                 <ChoiceLabel>{choice.choice_text}</ChoiceLabel>
                 <Votes>{choice.votes} votes</Votes>
@@ -97,9 +119,14 @@ const Polls = () => {
           ) : (
             <p>No choices available for this poll.</p>
           )}
-        </div>
         <NavigationButton onClick={handleNext}>&gt;</NavigationButton>
+
+        <VoteButton onClick={handleVote} disabled={voted}>
+          {voted ? 'Voted' : 'Vote Now'}
+        </VoteButton>
+        
       </PollContainer>
+      
     </Container>
   );
 };
