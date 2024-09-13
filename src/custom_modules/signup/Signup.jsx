@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button, Container, FormContainer, Input, Labels, TextContainer } from '../../styledComponents/common'
 import AuthForm from '../../components/AuthForm'
 
 const signup = {

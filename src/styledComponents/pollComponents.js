@@ -1,128 +1,106 @@
 import styled from 'styled-components';
 
-// Container for individual polls
-export const PollContainer = styled.div`
-  margin: 20px auto;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 400px;
-  text-align: center;
-  position: relative;
-`;
-
 export const Title = styled.h1`
-  font-size: 2em;
+  font-size: 2rem;
+  margin-bottom: 2rem;
   color: #333;
-  margin-bottom: 20px;
   text-align: center;
-  font-weight: bold;
 `;
 
-// Question text
-export const Question = styled.h2`
-  font-size: 18px;
-  margin-bottom: 10px;
-`;
-
-// Container for each choice
-export const ChoiceContainer = styled.div`
+export const PollList = styled.div`
   display: flex;
-  align-items: center;
-  margin: 10px 0;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
-// Label for choices
-export const ChoiceLabel = styled.label`
-  margin-left: 10px;
-  font-size: 16px;
+export const PollItem = styled.div`
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-// Display votes
-export const Votes = styled.span`
-  margin-left: 20px;
-  font-size: 14px;
-  color: rebeccapurple;
+export const Question = styled.h2`
+  font-size: 1.25rem;
+  color: #333;
 `;
 
-// Radio input
-export const ChoiceInput = styled.input`
-  margin-right: 10px;
+export const PubDate = styled.p`
+  font-size: 0.875rem;
+  color: #666;
 `;
 
-// Navigation buttons
-export const NavigationButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 18px;
 
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  &:nth-of-type(1) {
-    left: -60px;
-  }
-
-  &:nth-of-type(2) {
-    right: -60px; 
-  }
-`;
-
-export const VoteButton = styled.button`
-  background-color: #28a745;  /* Green background */
-  color: white;  /* White text */
-  border: none;  /* Remove default border */
-  padding: 10px 20px;  /* Add some padding */
-  font-size: 16px;  /* Increase font size */
-  border-radius: 5px;  /* Rounded corners */
-  cursor: pointer;  /* Pointer cursor on hover */
-  transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
-
-  &:hover {
-    background-color: #218838;  /* Darker green on hover */
-  }
-
-  &:active {
-    background-color: #1e7e34;  /* Even darker green when clicked */
-  }
-
-  &:disabled {
-    background-color: #6c757d;  /* Gray when disabled */
-    cursor: not-allowed;  /* No pointer cursor when disabled */
-  }
-`;
-
+//// AddPOLL ////
+// Form container
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
+// Input fields
 export const Input = styled.input`
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.2);
+  }
 `;
 
+// Buttons
 export const Button = styled.button`
-  padding: 10px 20px;
-  margin: 5px 0;
-  border: none;
   background-color: #007bff;
-  color: white;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
   border-radius: 4px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background-color: #0056b3;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const HomeButton = styled(Button)`
+  background-color: tomato;
+  margin-top: 10px;
+`;
+
+// Container for choice actions
+export const ChoiceActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+// Button to add choice
+export const AddChoiceButton = styled(Button)`
+  background-color: #28a745;
+  &:hover {
+    background-color: #218838;
   }
 `;

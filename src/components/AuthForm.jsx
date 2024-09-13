@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, FormContainer, Input, Labels, TextContainer } from '../styledComponents/common'
 
 function AuthForm (props) {
-  console.log(props)
   return (
       <FormContainer action="">
         <h1 > {props.authInfo.heading}</h1>

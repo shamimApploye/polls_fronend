@@ -25,7 +25,6 @@ const defaultApi = async (url, method, payload) => {
     
             case 'DELETE':
                 res = await api.delete(url)
-                console.log('Item Deleted', res.data) 
                 break;
             default:
                 console.log('default case');
