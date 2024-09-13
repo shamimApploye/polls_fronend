@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import Polls from "./Polls"
-import { actions } from "./action"
+import { actions } from "./pollsActions"
 
 const mapStateToProps = (state, ownProps) => ({
     pollsList: state.polls.polls,

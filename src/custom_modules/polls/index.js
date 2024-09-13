@@ -1,2 +1,2 @@
-import Polls from './container'
+import Polls from './pollsContainer'
 export default Polls
