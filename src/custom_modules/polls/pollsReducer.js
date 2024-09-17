@@ -47,8 +47,8 @@ const initialState = {
 
 // Central Reducer of the Module
 const pollsReducer = (state = initialState, action) => {
-    // console.log("ACTION CALLED:", action)
     const handler = ACTION_HANDLERS[action.type]
+
 
     return handler ? handler(state, action) : state
 }

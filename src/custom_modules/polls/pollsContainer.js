@@ -8,7 +8,6 @@ const mapStateToProps = (state, ownProps) => ({
     pollsLoading: state.polls.loading
 })
 
-// console.log(typeof actions.fetchPollsRequest)
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchPolls: () => dispatch (actions.fetchPollsRequest()),

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Container } from '../../../styledComponents/common';
-import { Form, Input, Button, Title } from '../../../styledComponents/pollComponents';
+import { Container, Title, Button } from '../../../styledComponents/common';
+import { Form, Input, HomeButton, ChoiceActions, AddChoiceButton } from '../../../styledComponents/pollComponents';
+import { useNavigate } from 'react-router-dom';
 
 const POLL_API_URL = 'http://127.0.0.1:8000/polls/';
 
 const AddPoll = () => {
+  const navigate = useNavigate()
   const [questionText, setQuestionText] = useState('');
   const [pubDate, setPubDate] = useState('');
   const [choices, setChoices] = useState([{ choice_text: '', votes: 0 }]);
@@ -80,7 +82,7 @@ const AddPoll = () => {
 
         <label htmlFor="pub_date">Publish Date:</label>
         <Input
-          type="datetime-local"
+          type="date"
           id="pub_date"
           value={pubDate}
           onChange={handlePubDateChange}
@@ -89,7 +91,7 @@ const AddPoll = () => {
 
         <label>Choices:</label>
         {choices.map((choice, index) => (
-          <div key={index} style={{ marginBottom: '10px' }}>
+          <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Input
               type="text"
               placeholder={`Choice ${index + 1}`}
@@ -97,18 +99,19 @@ const AddPoll = () => {
               onChange={(e) => handleChoiceChange(index, e)}
               required
             />
-            {choices.length > 1 && (
-              <Button type="button" onClick={() => removeChoice(index)}>Remove</Button>
-            )}
+            <ChoiceActions>
+              {choices.length > 1 && (
+                <Button type="button" onClick={() => removeChoice(index)}>Remove</Button>
+              )}
+              <AddChoiceButton type="button" onClick={addChoice}>Add Choice</AddChoiceButton>
+            </ChoiceActions>
           </div>
         ))}
 
-        <Button type="button" onClick={addChoice}>
-          Add Another Choice
-        </Button>
-
         <Button type="submit">Create Poll</Button>
       </Form>
+
+      <HomeButton type="submit" onClick={()=> navigate('/polls')}>Home</HomeButton>
     </Container>
   );
 };
