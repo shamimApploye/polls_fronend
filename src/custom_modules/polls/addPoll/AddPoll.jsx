@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container } from '../../../styledComponents/common';
-import { Form, Input, Button, HomeButton, Title, ChoiceActions, AddChoiceButton } from '../../../styledComponents/pollComponents';
+import { Container, Title, Button } from '../../../styledComponents/common';
+import { Form, Input, HomeButton, ChoiceActions, AddChoiceButton } from '../../../styledComponents/pollComponents';
 import { useNavigate } from 'react-router-dom';
 
 const POLL_API_URL = 'http://127.0.0.1:8000/polls/';

@@ -1,34 +1,101 @@
 import styled from 'styled-components';
+import { Button } from './common';
 
-export const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
-  text-align: center;
-`;
 
 export const PollList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  margin-top: 20px;
 `;
 
 export const PollItem = styled.div`
   background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 1rem;
+  padding: 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
 `;
 
 export const Question = styled.h2`
-  font-size: 1.25rem;
+  font-size: 1.5em;
   color: #333;
 `;
 
 export const PubDate = styled.p`
-  font-size: 0.875rem;
-  color: #666;
+  color: #777;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  text-align: center;
 `;
+
+export const Choice = styled.button`
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: ${props => (props.disabled ? '#ccc' : '#3498db')};
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: ${props => (props.disabled ? '#ccc' : '#2980b9')};
+  }
+`;
+
+export const Votes = styled.span`
+  margin-left: 10px;
+  font-size: 0.8em;
+  color: #444;
+`;
+
+export const Loader = styled.div`
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 10px; /* Space between buttons */
+  margin-top: 20px; /* Space from other content */
+`;
+
+export const NavButton = styled.button`
+  margin: 10px;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #2980b9;
+  }
+`;
+
 
 
 //// AddPOLL ////
@@ -60,30 +127,6 @@ export const Input = styled.input`
   }
 `;
 
-// Buttons
-export const Button = styled.button`
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-`;
 
 export const HomeButton = styled(Button)`
   background-color: tomato;
