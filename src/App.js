@@ -1,7 +1,7 @@
 import React from 'react';
 import Polls from './custom_modules/polls';
 import AddPoll from './custom_modules/polls/addPoll';
-import Signup from './custom_modules/signup/Signup';
+import Signup from './custom_modules/signup';
 import Login from './custom_modules/login/Login';
 import Dashboard from './custom_modules/dashboard/Dashboard';
 import { Route, Routes } from 'react-router-dom';

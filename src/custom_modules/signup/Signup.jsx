@@ -1,22 +1,18 @@
-import React, { useRef } from 'react'
-import { Button, Container, FormContainer, Input, Labels, TextContainer } from '../../styledComponents/common'
+import React, { useRef, useState } from 'react'
 import AuthForm from '../../components/AuthForm'
 
 
 
-function Signup() {
+function Signup(props) {
+  console.log(props)
+  const { postData } = props
+  const [error, setError] = useState (null)
 
   const firstNameRef = useRef (null)
   const lastNameRef = useRef (null)
   const emailRef = useRef (null)
   const passRef = useRef (null)
   const confirmRef = useRef (null)
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   console.log(e)
-  //   console.log(firstNameRef.current)
-  // }
 
   const signup = {
     heading: 'Registration',
@@ -56,10 +52,28 @@ function Signup() {
     ]
   }
 
+const handleForm = () => {
+  console.log('Its working')
+  // if (passRef.current.value !== confirmRef.current.value) {
+  //   console.log(passRef)
+  // }
+
+  // if (!firstNameRef.current.value || !lastNameRef.current.value || !emailRef.current.value || !passRef.current.value || !confirmRef.current.value)
+  //   console.log('firstNameRef')
+
+  // console.log(firstNameRef)
+  postData ({
+    firstName: firstNameRef.current.value,
+    lastName: lastNameRef.current.value,
+    email: emailRef.current.value,
+    password: passRef.current.value
+  })
+}
+
   return (
     <div className='outer-1'>
 
-      <AuthForm authInfo = {signup} />
+      <AuthForm authInfo = {signup} handleForm={handleForm}/>
      
       
     </div>

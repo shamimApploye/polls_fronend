@@ -3,10 +3,11 @@
 
 import { SUBMIT_SIGNUP_FORM } from "../../utils/constants";
 
-const handleSubmitForm = () => ({
-    type: SUBMIT_SIGNUP_FORM
+const postData = (payload) => ({
+    type: SUBMIT_SIGNUP_FORM,
+    payload
 })
 
-export default actions = {
-    handleSubmitForm
+export const actions = {
+    postData
 }
