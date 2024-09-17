@@ -11,6 +11,8 @@ import {
   Question,
   PubDate,
   Choice,
+  Circle,
+  Text,
   Votes,
   NavButton,
   ButtonWrapper,
@@ -24,6 +26,7 @@ const Polls = (props) => {
   const [choices, setChoices] = useState([]);
   const [loadingChoices, setLoadingChoices] = useState(false);
   const [choicesError, setChoicesError] = useState(null);
+  const [selectedChoice, setSelectedChoice] = useState(null);
 
   useEffect(() => {
     fetchPolls();
@@ -48,6 +51,25 @@ const Polls = (props) => {
       setChoicesError("Failed to load choices.");
     } finally {
       setLoadingChoices(false);
+    }
+  };
+
+  const handleVote = async (choiceId) => {
+    try {
+      await axios.post(`http://127.0.0.1:8000/polls/choices/${choiceId}/vote/`);
+      // Refresh choices after voting
+      fetchChoices(pollsList[currentIndex].id);
+    } catch (error) {
+      console.error("Error voting:", error);
+      setChoicesError("Failed to register vote.");
+    }
+  };
+
+  const handleChoiceClick = (choiceId) => {
+    if (!showVotes) {
+      setSelectedChoice(choiceId);
+      handleVote(choiceId);
+      setShowVotes(true);
     }
   };
 
@@ -76,11 +98,14 @@ const Polls = (props) => {
             choices.map((choice) => (
               <Choice
                 key={choice.id}
-                onClick={() => setShowVotes(true)}
+                onClick={() => handleChoiceClick(choice.id)}
                 disabled={showVotes}
               >
-                {choice.choice_text}
-                {showVotes && <Votes> - {choice.votes} votes</Votes>}
+                <Circle checked={selectedChoice === choice.id} />
+                <Text>{choice.choice_text}</Text>
+                {showVotes && (
+                  <Votes>{choice.votes} votes</Votes>
+                )}
               </Choice>
             ))
           )}
