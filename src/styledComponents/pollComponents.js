@@ -31,25 +31,48 @@ export const PubDate = styled.p`
   text-align: center;
 `;
 
-export const Choice = styled.button`
-  display: block;
-  width: 100%;
+export const Choice = styled.div`
+  display: flex;
+  align-items: center;
   padding: 10px;
   margin: 10px 0;
-  background-color: ${props => (props.disabled ? '#ccc' : '#3498db')};
-  color: white;
-  border: none;
+  background-color: ${props => (props.disabled ? '#ccc' : '#F0F8FF')};
+  color: black;
   border-radius: 5px;
   cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   transition: background-color 0.3s ease;
-  
-  &:hover {
-    background-color: ${props => (props.disabled ? '#ccc' : '#2980b9')};
+`;
+
+export const Circle = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: ${props => (props.checked ? '#90EE90' : '#DEB887')};
+  border: 2px solid #ffffff;
+  margin-right: 10px;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: ${props => (props.checked ? 'block' : 'none')};
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #3498db;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
+export const Text = styled.span`
+  flex: 1;
+  font-size: 1em;
+`;
+
 export const Votes = styled.span`
-  margin-left: 10px;
+  margin-left: 50px;
   font-size: 0.8em;
   color: #444;
 `;

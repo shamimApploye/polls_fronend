@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center children horizontally */
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -25,8 +26,9 @@ export const Container = styled.div`
 export const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
-  text-align: center;
+  color: #2F4F4F;
+  text-align: center; /* Center horizontally */
+  width: 100%;
 `;
 
 export const Loader = styled.div`
